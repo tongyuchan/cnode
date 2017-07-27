@@ -6,39 +6,39 @@ const path=require('path');
 
 module.exports={
     entry:{
-      app:'./src/index'
+        app:'./src/index'
     },
     output:{
-      filename:'[name].js',
-      path:path.join(__dirname,'/dist'),
-      publicPath:'/'
+        filename:'[name].js',
+        path:path.join(__dirname,'/dist'),
+        publicPath:'/'
     },
     module:{
-      loaders:[
-          {
-              test:/\.(js|jsx)$/,
-              exclude:/node_modules/,
-              loader:'babel-loader',
-              query:{
-                  presets:[ 'es2015','react']
-              }
-          },
-          {
-              test:/\.scss$/,
-              exclude:/node_modules/,
-              loader:ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader!sass-loader!autoprefixer-loader'})
-          },
-          {
-              test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
-              include: /iconfont/,
-              loader: 'file-loader?name=images/iconfont/[name].[ext]'
-          },
-          {
-              test: /\.(png|jpg)$/,
-              include: /default/,
-              loader: 'url?limit=20000&name=images/default/[name].[ext]' //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
-          }
-      ]
+        loaders:[
+            {
+                test:/\.(js|jsx)$/,
+                exclude:/node_modules/,
+                loader:'babel-loader',
+                query:{
+                    presets:[ 'es2015','react']
+                }
+            },
+            {
+                test:/\.scss$/,
+                exclude:/node_modules/,
+                loader:ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader!sass-loader!autoprefixer-loader'})
+            },
+            {
+                test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
+                include: /iconfont/,
+                loader: 'file-loader?name=images/iconfont/[name].[ext]'
+            },
+            {
+                test: /\.(png|jpg)$/,
+                include: /default/,
+                loader: 'url?limit=20000&name=images/default/[name].[ext]' //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
+            }
+        ]
     },
     plugins:[
         //new OpenBrowserPlugin({url:'http://localhost:8088'}),     //自动打开浏览器
@@ -62,10 +62,10 @@ module.exports={
         inline: true,
         progress: true,
         proxy: {
-             "/api/*": {
-                 target: "https://cnodejs.org",//后台服务器所在的地址
-                 secure: false
-             }
+            "/api/*": {
+                target: "https://cnodejs.org",//后台服务器所在的地址
+                secure: false
+            }
         },
         contentBase: "./dist",
         colors: true,
