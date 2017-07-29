@@ -6,17 +6,16 @@ import {Provider} from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';      //using onTouchTap
 injectTapEventPlugin();
 
-import {React} from 'react';
-import {HashRouter,Route,IndexRoute} from 'react-router-dom';
+import './scss/index.scss';
+
+import {HashRouter,Route} from 'react-router-dom';
 
 import HomePage from './containers/HomePage';
 
 render(
   <Provider store={store}>
       <HashRouter>
-            <Route>
-                <IndexRoute component={HomePage}/>
-            </Route>
+            <Route path="/" exact component={HomePage}/>
       </HashRouter>
   </Provider>,
     document.getElementById('root')
