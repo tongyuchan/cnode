@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 
 import Header from '../components/common/Header/Header';
+import CircleLoading from '../components/common/CircleLoading';
 
 class HomePage extends Component{
     constructor(){
@@ -51,7 +52,18 @@ class HomePage extends Component{
         }=this.props;
         return (
             <div className={this.state.fadeIn?'fade-in':''}>
-                <Header filter={selectedTab} fixedTop={this.state.fixedTop} tabs={this.tabs}/>
+                <Header filter={selectedTab} fixedTop={this.state.fixedTop} tabs={this.tabs}>
+                    {
+                        this.tabs.map((tab,index)=>{
+                            {console.log(1)}
+
+                            (<div key={index}>
+                                {((isFetching&&page==0)||(tab.filter!==selectedTab&&!tabData[tab.filter])) && <CircleLoading/>}
+                                11
+                            </div>)
+                        })
+                    }
+                </Header>
             </div>
         )
     }
