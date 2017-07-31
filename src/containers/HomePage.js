@@ -13,7 +13,8 @@ const styles={
         position:'fixed',
         top:64,
         left:0,
-        width:'100%'
+        width:'100%',
+        zIndex:10
     },
     content:{
         width:'100%',
@@ -94,7 +95,10 @@ class HomePage extends Component{
                             {
                                 this.tabs.map((tab,index)=>{
                                     return (
-                                        <div key={index}>{tab.title}</div>
+                                        <div key={index}>
+                                            {<CircleLoading></CircleLoading>}
+                                            {tab.title}
+                                        </div>
                                     )
                                 })
                             }
