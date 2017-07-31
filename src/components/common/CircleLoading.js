@@ -10,10 +10,10 @@ const style={
     margin:`${0.5*windowH-30}px auto`
 };
 
-const CircleLoading=()=>{
+const CircleLoading=()=>(
     <MuiThemeProvider>
         <CircularProgress size={60} thickness={7} style={style}/>
     </MuiThemeProvider>
-};
+);
 
 export default  CircleLoading;
