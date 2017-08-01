@@ -1,27 +1,12 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 
-import Header from '../components/common/Header/Header';
+import Header from '../components/HomePage/Header/Header';
 import CircleLoading from '../components/common/CircleLoading';
+import Lists from '../components/HomePage/Lists/Lists'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Tab,Tabs} from 'material-ui/Tabs'
-import SwipeableViews from 'react-swipeable-views';
+import {fetchTopics} from '../actions/index'
 
-const styles={
-    tab:{
-        position:'fixed',
-        top:64,
-        left:0,
-        width:'100%',
-        zIndex:10
-    },
-    content:{
-        width:'100%',
-        height:'100%',
-        paddingTop:112
-    }
-};
 
 class HomePage extends Component{
     constructor(props){
@@ -67,6 +52,13 @@ class HomePage extends Component{
         });
     }
 
+    componentDidMount(){
+        const {selectedTab,page,dispatch}=this.props;
+        if(page===0){
+            dispatch(fetchTopics(selectedTab))
+        }
+    }
+
     render(){
         const {
             selectedTab,
@@ -79,34 +71,18 @@ class HomePage extends Component{
         }=this.props;
         return (
             <div className={this.state.fadeIn?'fade-in':''}>
-                <Header filter={selectedTab} fixedTop={this.state.fixedTop} tabs={this.tabs} />
-                <MuiThemeProvider>
-                    <div>
-                        <Tabs style={styles.tab} value={this.state.slideIndex} onChange={this.handleChange}>
-                            {
-                                this.tabs.map((tab,index)=>{
-                                    return (
-                                        <Tab label={tab.title} value={index} key={index}></Tab>
-                                    )
-                                })
-                            }
-                        </Tabs>
-                        <SwipeableViews index={this.state.slideIndex} onChangeIndex={this.handleChange} style={styles.content}>
-                            {
-                                this.tabs.map((tab,index)=>{
-                                    return (
-                                        <div key={index}>
-                                            {<CircleLoading></CircleLoading>}
-                                            {tab.title}
-                                        </div>
-                                    )
-                                })
-                            }
-                        </SwipeableViews>
-                    </div>
-                </MuiThemeProvider>
-
-
+                <Header filter={selectedTab} fixedTop={this.state.fixedTop} tabs={this.tabs}>
+                    {
+                        this.tabs.map((tab,index)=>{
+                            return (
+                                <div key={index}>
+                                    {((isFetching&&page===0)) && <CircleLoading/>}
+                                    {(!(isFetching&&page===0)) && <Lists topics={topics}/>}
+                                </div>
+                            )
+                        })
+                    }
+                </Header>
             </div>
         )
     }

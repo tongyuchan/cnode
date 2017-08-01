@@ -16,6 +16,7 @@
     "prop-type": "0.0.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-flip-move": "^2.9.14",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",

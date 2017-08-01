@@ -19,7 +19,7 @@ function tabDataItem(state={isFetching:false,page:0,topics:[]},action){
         case REQUEST_TOPICS:
             return {
                 ...state,
-                isFetching:false
+                isFetching:true
             };
         case RECEIVE_TOPICS:
             if(state.page<action.page){

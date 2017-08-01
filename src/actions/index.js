@@ -26,5 +26,5 @@ export const fetchTopics=(tab,page=1,limit=20)=>(dispatch)=>{
     dispatch(requestTopics(tab));
     fetch(`https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&limit=${limit}`)
     .then(response=>response.json())
-    .then(json=>dispatch(requestTopics(tab,json.data,page,limit)))
+    .then(json=>dispatch(receiveTopics(tab,json.data,page,limit)))
 };
