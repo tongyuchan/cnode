@@ -77,6 +77,10 @@ class HomePage extends Component{
         if(!isFetching && !topics.length){
             dispatch(fetchTopics(selectedTab))
         }
+        //每次切换tab滚动条回到初始位置
+        if(selectedTab!=this.props.selectedTab){
+            window.scrollTo(0,0);
+        }
     }
 
     render(){
