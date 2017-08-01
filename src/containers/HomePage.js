@@ -5,7 +5,7 @@ import Header from '../components/HomePage/Header/Header';
 import CircleLoading from '../components/common/CircleLoading';
 import Lists from '../components/HomePage/Lists/Lists'
 
-import {fetchTopics} from '../actions/index'
+import {fetchTopics,selectTab} from '../actions/index'
 import getSize from '../utils/getSize';
 
 class HomePage extends Component{
@@ -54,6 +54,11 @@ class HomePage extends Component{
         }
     }
 
+    handleClick=(tab)=>{
+        const {dispatch}=this.props;
+        dispatch(selectTab(tab))
+    }
+
     componentDidMount(){
         const {selectedTab,page,dispatch}=this.props;
         if(page===0){
@@ -64,6 +69,13 @@ class HomePage extends Component{
             if(windowH+scrollT+100>contentH){
                 this.loadMore();
             }
+        }
+    }
+
+    componentWillReceiveProps(newProps){
+        const {selectedTab,isFetching,topics,dispatch}=newProps;
+        if(!isFetching && !topics.length){
+            dispatch(fetchTopics(selectedTab))
         }
     }
 
@@ -79,7 +91,7 @@ class HomePage extends Component{
         }=this.props;
         return (
             <div className={this.state.fadeIn?'fade-in':''}>
-                <Header filter={selectedTab} fixedTop={this.state.fixedTop} tabs={this.tabs}>
+                <Header filter={selectedTab}  tabs={this.tabs} onClick={this.handleClick}>
                     {
                         this.tabs.map((tab,index)=>{
                             return (

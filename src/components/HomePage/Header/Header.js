@@ -20,6 +20,21 @@ class Header extends Component{
         this.setState({
             slideIndex:value
         });
+        this.props.onClick(this.props.tabs[value].filter)
+    }
+
+    componentWillMount(){
+        const {tabs,filter}=this.props;
+        let slideIndex;
+        tabs.forEach((tab,index)=>{
+            if(tab.filter==filter){
+                slideIndex=index;
+                return
+            }
+        });
+        this.setState({
+            slideIndex
+        });
     }
 
     render(){
