@@ -6,7 +6,7 @@ import CircleLoading from '../components/common/CircleLoading';
 import Lists from '../components/HomePage/Lists/Lists'
 
 import {fetchTopics} from '../actions/index'
-
+import getSize from '../utils/getSize';
 
 class HomePage extends Component{
     constructor(props){
@@ -46,16 +46,24 @@ class HomePage extends Component{
         }
     ]
 
-    handleChange = (value)=>{
-        this.setState({
-           slideIndex:value
-        });
+    loadMore=()=>{
+        const {selectedTab,page,isFetching,dispatch}=this.props;
+        let iPage=page;
+        if(!isFetching){
+            dispatch(fetchTopics(selectedTab,++iPage))
+        }
     }
 
     componentDidMount(){
         const {selectedTab,page,dispatch}=this.props;
         if(page===0){
             dispatch(fetchTopics(selectedTab))
+        }
+        window.onscroll=()=>{
+            const {windowH,scrollT,contentH} =getSize();
+            if(windowH+scrollT+100>contentH){
+                this.loadMore();
+            }
         }
     }
 
@@ -76,8 +84,8 @@ class HomePage extends Component{
                         this.tabs.map((tab,index)=>{
                             return (
                                 <div key={index}>
-                                    {((isFetching&&page===0)) && <CircleLoading/>}
-                                    {(!(isFetching&&page===0)) && <Lists topics={topics}/>}
+                                    {((isFetching&&page===0) || (tab.filter!=selectedTab && !tabData[tab.filter])) && <CircleLoading/>}
+                                    { tab.filter==selectedTab && <Lists topics={topics}/>}
                                 </div>
                             )
                         })

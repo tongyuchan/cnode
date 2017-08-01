@@ -19,3 +19,32 @@
         font-size:14px;
     }
 }
+.spinner{
+    margin:24px auto;
+    width:100%;
+    text-align:center;
+    div{
+        width:30px;
+        height:30px;
+        margin:0 20px;
+        background-color:#00BCD4;
+        border-radius:50%;
+        display: inline-block;
+        animation: bouncedelay 1.4s infinite ease-in-out;
+        animation-fill-mode:both;
+        &.bounce1{
+            animation-delay: -0.32s;
+        }
+        &.bounce2{
+            animation-delay:-0.16s;
+        }
+    }
+}
+@keyframes bouncedelay {
+    0%,80%,100%{
+        transform:scale(0);
+    }
+    40%{
+        transform:scale(1);
+    }
+}

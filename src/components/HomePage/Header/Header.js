@@ -31,7 +31,7 @@ class Header extends Component{
                         <AppBar
                             title={<p style={{textAlign:"center"}}>NodeJS论坛</p>}
                         />
-                        <Tabs value={this.state.slideIndex} onChange={this.handleChange}>
+                        <Tabs value={this.state.slideIndex} onChange={this.handleChange} className='tabs'>
                             {
                                 tabs.map((tab,index)=>{
                                     return (
