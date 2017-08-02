@@ -1,0 +1,39 @@
+.detailTopicList{
+    margin-top:64px;
+    .topicTitle{
+        overflow: hidden;
+        >div >div{
+            padding-bottom:0px!important;
+        }
+        .titleBox{
+            overflow: hidden;
+            position: relative;
+            top:-10px;
+        }
+        .leftTitle{
+            float:left;
+            h3{
+                height:40px;
+                line-height:40px;
+                font-size: 16px;
+                max-width:100px;
+                overflow: hidden;
+            }
+        }
+        .rightTitle{
+            text-align: right;
+            float:right;
+            div{
+                height: 20px;
+                line-height: 20px;
+                color: #999;
+                font-size: 14px;
+            }
+            p{
+                font-size: 14px;
+                color: #999;
+            }
+        }
+    }
+
+}

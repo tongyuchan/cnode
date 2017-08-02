@@ -33,6 +33,7 @@ export const fetchTopics=(tab,page=1,limit=20)=>(dispatch)=>{
 //DetailTopic
 export const REQUEST_DETAILTOPIC='REQUEST_DETAILTOPIC';
 export const RECEIVE_DETAILTOPIC='RECEIVE_DETAILTOPIC';
+export const CLEAR_DETAILTOPIC='CLEAR_DETAILTOPIC';
 
 const requestDetailTopic=()=>({
     type:REQUEST_DETAILTOPIC
@@ -44,7 +45,11 @@ const receiveDetailTopic=(data)=>({
 
 export const fetchDetailTopic=(id)=>(dispatch)=>{
     dispatch(requestDetailTopic(id));
-    fetch(`https://cnodejs.org/api/v1/topics/${id}`)
+    fetch(`https://cnodejs.org/api/v1/topic/${id}`)
     .then(response=>response.json())
     .then(json=>dispatch(receiveDetailTopic(json.data)))
 };
+
+export const clearDetailTopic=()=>({
+   type:CLEAR_DETAILTOPIC
+});

@@ -1,4 +1,4 @@
-body,p{
+body,p,h1,h2,h3,h4,h5{
     margin:0;
     padding:0;
 }
@@ -29,6 +29,6 @@ body,p{
 
 .icon-informatiom:before { content: "\e617"; }
 
-.icon-huifu:before { content: "\e63f"; }
+.icon-reply:before { content: "\e63f"; }
 
-.icon-chakanguo:before { content: "\e6ae"; }
+.icon-visit:before { content: "\e6ae"; }
