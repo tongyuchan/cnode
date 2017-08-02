@@ -2,3 +2,33 @@ body,p{
     margin:0;
     padding:0;
 }
+
+@font-face {font-family: "iconfont";
+    src: url('./iconfonts/iconfont.eot?t=1481708482838'); /* IE9*/
+    src: url('./iconfonts/iconfont.eot?t=1481708482838#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('./iconfonts/iconfont.woff?t=1481708482838') format('woff'), /* chrome, firefox */
+    url('./iconfonts/iconfont.ttf?t=1481708482838') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('./iconfonts/iconfont.svg?t=1481708482838#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-xiai:before { content: "\e600"; }
+
+.icon-ding:before { content: "\e610"; }
+
+.icon-user:before { content: "\e60f"; }
+
+.icon-back:before { content: "\e611"; }
+
+.icon-informatiom:before { content: "\e617"; }
+
+.icon-huifu:before { content: "\e63f"; }
+
+.icon-chakanguo:before { content: "\e6ae"; }
