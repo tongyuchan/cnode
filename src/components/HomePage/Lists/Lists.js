@@ -48,7 +48,7 @@ const Lists=(props)=>{
                             {
                                 topics.map((topic,index)=>{
                                     return(
-                                        <Link key={index} to="#" className="listItemLink">
+                                        <Link key={index} to={`/topic/${topic.id}`} className="listItemLink">
                                             <ListItem
                                                 leftAvatar={<Avatar src={topic.author.avatar_url}/>}
                                                 primaryText={

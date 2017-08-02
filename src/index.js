@@ -11,11 +11,15 @@ import './scss/index.scss';
 import {HashRouter,Route} from 'react-router-dom';
 
 import HomePage from './containers/HomePage';
+import DetailTopic from './containers/DetailTopic';
 
 render(
   <Provider store={store}>
       <HashRouter>
-            <Route path="/" exact component={HomePage}/>
+           <div>
+               <Route path="/" exact component={HomePage}/>
+               <Route path="/topic/:id" component={DetailTopic}/>
+           </div>
       </HashRouter>
   </Provider>,
     document.getElementById('root')
