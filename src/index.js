@@ -12,6 +12,7 @@ import {HashRouter,Route} from 'react-router-dom';
 
 import HomePage from './containers/HomePage';
 import DetailTopic from './containers/DetailTopic';
+import Login from './containers/Login';
 
 render(
   <Provider store={store}>
@@ -19,6 +20,7 @@ render(
            <div>
                <Route path="/" exact component={HomePage}/>
                <Route path="/topic/:id" component={DetailTopic}/>
+               <Route path="/login" component={Login}/>
            </div>
       </HashRouter>
   </Provider>,

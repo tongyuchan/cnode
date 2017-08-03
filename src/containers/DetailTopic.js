@@ -30,7 +30,7 @@ class DetailTopic extends Component{
             <Header title="详情" isFetching={isFetching}/>
             {isFetching && <CircleLoading/>}
             {data.content && <Content data={data}/>}
-            {data.reply_count && <Reply count={data.reply_count} replyList={data.replies}/>}
+            {data.reply_count ? <Reply count={data.reply_count} replyList={data.replies}/>:''}
         </div>)
     }
 }

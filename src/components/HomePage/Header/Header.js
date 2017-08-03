@@ -38,13 +38,14 @@ class Header extends Component{
     }
 
     render(){
-        const {tabs} =this.props;
+        const {tabs,toggleFn} =this.props;
         return (
             <MuiThemeProvider>
                 <div>
                     <div className="homePageHeader">
                         <AppBar
                             title={<p style={{textAlign:"center"}}>NodeJS论坛</p>}
+                            onLeftIconButtonTouchTap={toggleFn}
                         />
                         <Tabs value={this.state.slideIndex} onChange={this.handleChange} className='tabs'>
                             {

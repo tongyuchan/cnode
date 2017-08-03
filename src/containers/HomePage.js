@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Header from '../components/HomePage/Header/Header';
 import CircleLoading from '../components/common/CircleLoading';
 import Lists from '../components/HomePage/Lists/Lists'
+import Login from '../components/HomePage/Login/Login';
 
 import {fetchTopics,selectTab} from '../actions/index'
 import getSize from '../utils/getSize';
@@ -14,12 +15,7 @@ class HomePage extends Component{
     }
 
     state={
-        fadeIn:true,
-        openDrawer:false,
-        openSnackbar:false,
-        isFreshing:false,
-        fixedTop:0,
-        scrollT:0,
+        open:false,
         slideIndex:0    //切换tab
     }
 
@@ -59,6 +55,10 @@ class HomePage extends Component{
         dispatch(selectTab(tab))
     }
 
+    toggleFn=()=>{
+        this.setState({open:!this.state.open})
+    }
+
     componentDidMount(){
         const {selectedTab,page,dispatch}=this.props;
         if(page===0){
@@ -95,7 +95,7 @@ class HomePage extends Component{
         }=this.props;
         return (
             <div className={this.state.fadeIn?'fade-in':''}>
-                <Header filter={selectedTab}  tabs={this.tabs} onClick={this.handleClick}>
+                <Header filter={selectedTab}  tabs={this.tabs} onClick={this.handleClick} toggleFn={this.toggleFn}>
                     {
                         this.tabs.map((tab,index)=>{
                             return (
@@ -107,6 +107,7 @@ class HomePage extends Component{
                         })
                     }
                 </Header>
+                <Login open={this.state.open} toggleFn={this.toggleFn}/>
             </div>
         )
     }
