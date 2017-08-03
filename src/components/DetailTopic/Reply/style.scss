@@ -7,3 +7,21 @@
 .replyName{
     font-size:16px;
 }
+.replyContent{
+    img{
+        display: block;
+        margin: 20px auto;
+        width: 600px;
+    }
+    @media (max-width: 750px){
+        img{
+            width: 80%;
+        }
+    }
+    p{
+        line-height:28px;
+        a{
+            word-break: break-all;
+        }
+    }
+}
