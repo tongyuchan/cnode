@@ -36,7 +36,7 @@ const Lists=(props)=>{
         <div>
             <div className='lists'>
                 <MuiThemeProvider>
-                    <list>
+                    <List>
                         <FlipMove
                             disableAllAnimations={disableAllAnimations}
                             enterAnimation={enterAnimation}
@@ -72,7 +72,7 @@ const Lists=(props)=>{
                                 })
                             }
                         </FlipMove>
-                    </list>
+                    </List>
                 </MuiThemeProvider>
                 <div className="spinner">
                     <div className="bounce1"></div>

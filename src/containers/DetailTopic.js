@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Header from '../components/common/Header/Header';
 import CircleLoading from '../components/common/CircleLoading';
 import Content from '../components/DetailTopic/Content/Content';
+import Reply from '../components/DetailTopic/Reply/Reply';
 
 import {fetchDetailTopic,clearDetailTopic} from '../actions/index';
 
@@ -29,6 +30,7 @@ class DetailTopic extends Component{
             <Header title="详情" isFetching={isFetching}/>
             {isFetching && <CircleLoading/>}
             {data.content && <Content data={data}/>}
+            {data.reply_count && <Reply count={data.reply_count} replyList={data.replies}/>}
         </div>)
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';    //动态修改css
-import css from './Header.scss';
+import css from './style.scss';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
