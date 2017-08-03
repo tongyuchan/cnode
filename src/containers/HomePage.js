@@ -101,7 +101,7 @@ class HomePage extends Component{
                             return (
                                 <div key={index}>
                                     {((isFetching&&page===0) || (tab.filter!=selectedTab && !tabData[tab.filter])) && <CircleLoading/>}
-                                    { tab.filter==selectedTab && <Lists topics={topics}/>}
+                                    { (tab.filter==selectedTab && topics.length) ? <Lists topics={topics}/>:''}
                                 </div>
                             )
                         })

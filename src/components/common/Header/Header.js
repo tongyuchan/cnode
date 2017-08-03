@@ -7,7 +7,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 
 const Header=props=>{
-    const {isFetching,title}=props;
+    const {isFetching,title,history}=props;
     return (
         <div className="header">
             <MuiThemeProvider>
@@ -18,7 +18,7 @@ const Header=props=>{
                     }
                     onLeftIconButtonTouchTap={
                         ()=>{
-                            window.history.go(-1);
+                           history.go(-1);
                         }
                     }
                 />

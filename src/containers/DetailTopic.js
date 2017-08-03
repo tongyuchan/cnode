@@ -25,9 +25,9 @@ class DetailTopic extends Component{
     }
 
     render(){
-        const {data,isFetching}=this.props;
+        const {data,isFetching,history}=this.props;
         return (<div>
-            <Header title="详情" isFetching={isFetching}/>
+            <Header title="详情" isFetching={isFetching} history={history}/>
             {isFetching && <CircleLoading/>}
             {data.content && <Content data={data}/>}
             {data.reply_count ? <Reply count={data.reply_count} replyList={data.replies}/>:''}

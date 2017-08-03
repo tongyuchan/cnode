@@ -11,7 +11,6 @@ import Avatar from 'material-ui/Avatar';
 
 const Reply=(props)=>{
     const {count,replyList}=props;
-    console.log(replyList)
     return (
         <MuiThenemProvider>
             <div>
