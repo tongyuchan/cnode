@@ -33,8 +33,8 @@ const Content=(prop)=>{
                     }
                     className="topicTitle"
                 />
-               <ListItem>
-                    <div dangerouslySetInnerHTML={{__html:data.content}}></div>
+               <ListItem style={{lineHeight:'auto'}}>
+                    <div dangerouslySetInnerHTML={{__html:data.content}} className="markdown-body main"></div>
                </ListItem>
             </List>
         </MuiThemeProvider>
