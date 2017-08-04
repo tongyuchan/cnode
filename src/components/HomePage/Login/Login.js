@@ -18,7 +18,7 @@ const Login=(props)=>{
             >
                 <div className="leftLoginTitle">
                     <div>
-                        <Link to="/router" className="link">
+                        <Link to="/login" className="link">
                             <i className="iconfont icon-user"></i>
                         </Link>
                         <p>点击头像登录</p>

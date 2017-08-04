@@ -14,6 +14,7 @@ import HomePage from './containers/HomePage';
 import DetailTopic from './containers/DetailTopic';
 import Login from './containers/Login';
 
+
 render(
   <Provider store={store}>
       <HashRouter>
@@ -26,3 +27,6 @@ render(
   </Provider>,
     document.getElementById('root')
 );
+
+
+// c7c35468-a78b-4097-8bb1-a2a0adf99676
