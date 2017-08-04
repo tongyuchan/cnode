@@ -57,7 +57,8 @@ export const clearDetailTopic=()=>({
 //Login
 export const INPUT_ACCESSTOKEN='INPUT_ACCESSTOKEN';
 export const REQUEST_LOGIN='REQUEST_LOGIN';
-export const RECEIVE_LOGIN='RECEIVE_LOGIN';
+export const LOGIN_SUCCESS='LOGIN_SUCCESS';
+export const LOGIN_ERROR='LOGIN_ERROR';
 
 export const inputAccessToken=(value)=>({
     type:INPUT_ACCESSTOKEN,
@@ -68,6 +69,32 @@ const requestLogin=()=>({
    type:REQUEST_LOGIN
 });
 
-const receiveLogin=()=>({
-   type:RECEIVE_LOGIN
+const loginSuccess=(avatar_url,id,loginname)=>({
+    type:LOGIN_SUCCESS,
+    avatar_url,
+    id,
+    loginname
 });
+
+const loginError=(error)=>({
+    type:LOGIN_ERROR,
+    error
+});
+
+export const fetchLogin=(accessToken)=>(dispatch,getState)=>{
+   dispatch(requestLogin());
+   fetch(`https://cnodejs.org/api/v1/accesstoken`,{
+       method:'POST',
+       headers: {
+           "Content-Type": "application/x-www-form-urlencoded"
+       },
+       body: `accesstoken=${accessToken}`})
+   .then(response=>response.json())
+   .then(json=>{
+       if(json.success){
+           dispatch(loginSuccess(json.avatar_url,json.id,json.loginname));
+       }else{
+            dispatch(loginError(json.error_msg));
+       }
+   });
+};
