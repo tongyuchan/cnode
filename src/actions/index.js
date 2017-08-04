@@ -55,3 +55,19 @@ export const clearDetailTopic=()=>({
 });
 
 //Login
+export const INPUT_ACCESSTOKEN='INPUT_ACCESSTOKEN';
+export const REQUEST_LOGIN='REQUEST_LOGIN';
+export const RECEIVE_LOGIN='RECEIVE_LOGIN';
+
+export const inputAccessToken=(value)=>({
+    type:INPUT_ACCESSTOKEN,
+    accessToken:value
+});
+
+const requestLogin=()=>({
+   type:REQUEST_LOGIN
+});
+
+const receiveLogin=()=>({
+   type:RECEIVE_LOGIN
+});
