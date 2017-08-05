@@ -7,7 +7,7 @@ import {
 
 
 
-const login=(state={accessToken:'',isFetching:false,error:'',avatar_url:'',id:'',loginname:''},action)=>{
+const login=(state={accessToken:window.localStorage.getItem('cnodeA')|| '',isFetching:false,error:'',avatar_url:'',id:'',loginname:window.localStorage.getItem('cnodeL')||''},action)=>{
     switch (action.type){
         case INPUT_ACCESSTOKEN:
             return {...state,accessToken:action.accessToken,error:''};

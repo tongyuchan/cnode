@@ -39,8 +39,12 @@ class Login extends Component{
     }
 
     componentWillReceiveProps(newProps){
-        if(newProps.id){
-            alert(1)
+        const {history}=this.props;
+        const {id,loginname,accessToken}=newProps;
+        if(id){
+            history.replace('/person');
+            window.localStorage.setItem('cnodeL',loginname);
+            window.localStorage.setItem('cnodeA',accessToken);
         }
     }
 
@@ -82,12 +86,13 @@ class Login extends Component{
 
 function mapStateToProps(state){
     const {login}=state;
-    const {accessToken,isFetching,error,id}=login;
+    const {accessToken,isFetching,error,id,loginname}=login;
     return {
         accessToken,
         isFetching,
         error,
-        id
+        id,
+        loginname
     }
 }
 

@@ -98,3 +98,43 @@ export const fetchLogin=(accessToken)=>(dispatch,getState)=>{
        }
    });
 };
+
+//Person
+export const REQUEST_PERSON='REQUEST_PERSON';
+export const RECEIVE_PERSON='RECEIVE_PERSON';
+export const REQUEST_COLLECT='REQUEST_COLLEST';
+export const RECEIVE_COLLECT='RECEIVE_COLLECT';
+
+const requestPerson=()=>({
+    type:REQUEST_PERSON
+});
+
+const receivePerson=(data)=>({
+    type:RECEIVE_PERSON,
+    user:data
+});
+
+export const fetchPerson=()=>(dispatch,getState)=>{
+    const loginname=getState().login.loginname;
+    dispatch(requestPerson());
+    fetch(`https://cnodejs.org/api/v1/user/${loginname}`)
+    .then(response=>response.json())
+    .then(json=>dispatch(receivePerson(json.data)))
+};
+
+const requestCollect=()=>({
+    type:REQUEST_COLLECT
+});
+
+const receiveCollect=(data)=>({
+    type:RECEIVE_COLLECT,
+    collect:data
+});
+
+export const fetchCollect=()=>(dispatch,getState)=>{
+    const loginname=getState().login.loginname;
+    dispatch(requestPerson());
+    fetch(`https://cnodejs.org/api/v1/topic_collect/${loginname}`)
+    .then(response=>response.json())
+    .then(json=>dispatch(receiveCollect(json.data)))
+};
