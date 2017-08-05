@@ -1,0 +1,25 @@
+.personTop{
+    height:250px;
+    background:rgb(0, 188, 212);
+    div{
+        height: 70px;
+        width: 70px;
+        margin: 0 auto;
+        padding-top: 88px;
+        img{
+            width:100%;
+            border-radius: 50%;
+        }
+    }
+    p{
+        text-align: center;
+        padding-top: 10px;
+        color: #fff;
+    }
+}
+.personList{
+    i{
+        font-size: 22px;
+        line-height: 40px;
+    }
+}
