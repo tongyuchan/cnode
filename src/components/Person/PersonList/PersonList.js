@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 import './styles.scss';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -18,33 +19,39 @@ const PersonList=(props)=>{
                     <p>积分：{user.score}</p>
                 </div>
                 <List className="personList">
-                    <ListItem
-                        leftAvatar={<i className="iconfont icon-create"></i>}
-                        primaryText={
-                            <div>
-                                我创建的
-                                <span style={{float:'right'}} className="iconfont icon-right"></span>
-                            </div>
-                        }
-                    />
-                    <ListItem
-                        leftAvatar={<i className="iconfont icon-join"></i>}
-                        primaryText={
-                            <div>
-                                我参与的
-                                <span style={{float:'right'}} className="iconfont icon-right"></span>
-                            </div>
-                        }
-                    />
-                    <ListItem
-                        leftAvatar={<i className="iconfont icon-collect"></i>}
-                        primaryText={
-                            <div>
-                                我收藏的
-                                <span style={{float:'right'}} className="iconfont icon-right"></span>
-                            </div>
-                        }
-                    />
+                    <Link to="/topicList/0">
+                        <ListItem
+                            leftAvatar={<i className="iconfont icon-create"></i>}
+                            primaryText={
+                                <div>
+                                    我创建的
+                                    <span style={{float:'right'}} className="iconfont icon-right"></span>
+                                </div>
+                            }
+                        />
+                    </Link>
+                    <Link to="/topicList/1">
+                        <ListItem
+                            leftAvatar={<i className="iconfont icon-join"></i>}
+                            primaryText={
+                                <div>
+                                    我参与的
+                                    <span style={{float:'right'}} className="iconfont icon-right"></span>
+                                </div>
+                            }
+                        />
+                    </Link>
+                    <Link to="/topicList/2">
+                        <ListItem
+                            leftAvatar={<i className="iconfont icon-collect"></i>}
+                            primaryText={
+                                <div>
+                                    我收藏的
+                                    <span style={{float:'right'}} className="iconfont icon-right"></span>
+                                </div>
+                            }
+                        />
+                    </Link>
                     <ListItem
                         leftAvatar={<i className="iconfont icon-message"></i>}
                         primaryText={

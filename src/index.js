@@ -14,6 +14,7 @@ import HomePage from './containers/HomePage';
 import DetailTopic from './containers/DetailTopic';
 import Login from './containers/Login';
 import Person from './containers/Person';
+import TopicList from './containers/TopicList'
 
 render(
   <Provider store={store}>
@@ -23,6 +24,7 @@ render(
                <Route path="/topic/:id" component={DetailTopic}/>
                <Route path="/login" component={Login}/>
                <Route path="/person" component={Person}/>
+               <Route path="/topicList/:id" component={TopicList}/>
            </div>
       </HashRouter>
   </Provider>,

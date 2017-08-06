@@ -5,7 +5,7 @@ import {
     RECEIVE_COLLECT
 }from '../actions/index';
 
-const person=(state={isFetching:false,user:{},collect:{}},action)=>{
+const person=(state={isFetching:false,user:{},collect:[]},action)=>{
     switch (action.type){
         case REQUEST_PERSON:
             return {...state,isFetching:true};
