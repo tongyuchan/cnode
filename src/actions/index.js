@@ -59,6 +59,7 @@ export const INPUT_ACCESSTOKEN='INPUT_ACCESSTOKEN';
 export const REQUEST_LOGIN='REQUEST_LOGIN';
 export const LOGIN_SUCCESS='LOGIN_SUCCESS';
 export const LOGIN_ERROR='LOGIN_ERROR';
+export const LOGIN_EXIT='LOGIN_EXIT';
 
 export const inputAccessToken=(value)=>({
     type:INPUT_ACCESSTOKEN,
@@ -98,6 +99,10 @@ export const fetchLogin=(accessToken)=>(dispatch,getState)=>{
        }
    });
 };
+
+export const loginExit=()=>({
+   type:LOGIN_EXIT
+});
 
 //Person
 export const REQUEST_PERSON='REQUEST_PERSON';

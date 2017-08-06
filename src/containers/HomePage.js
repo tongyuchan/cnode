@@ -6,7 +6,7 @@ import CircleLoading from '../components/common/CircleLoading';
 import Lists from '../components/HomePage/Lists/Lists'
 import Login from '../components/HomePage/Login/Login';
 
-import {fetchTopics,selectTab} from '../actions/index'
+import {fetchTopics,selectTab,fetchLogin,loginExit} from '../actions/index'
 import getSize from '../utils/getSize';
 
 class HomePage extends Component{
@@ -52,11 +52,22 @@ class HomePage extends Component{
 
     handleClick=(tab)=>{
         const {dispatch}=this.props;
-        dispatch(selectTab(tab))
+        dispatch(selectTab(tab));
+    }
+
+    exit=()=>{
+        const {dispatch}=this.props;
+        window.localStorage.removeItem('cnodeL');
+        window.localStorage.removeItem('cnodeA');
+        dispatch(loginExit());
     }
 
     toggleFn=()=>{
-        this.setState({open:!this.state.open})
+        const {dispatch,accessToken,id}=this.props;
+        if(!this.state.open && accessToken && !id){
+            dispatch(fetchLogin(accessToken));
+        }
+        this.setState({open:!this.state.open});
     }
 
     componentDidMount(){
@@ -73,13 +84,18 @@ class HomePage extends Component{
     }
 
     componentWillReceiveProps(newProps){
-        const {selectedTab,isFetching,topics,dispatch}=newProps;
+        const {selectedTab,isFetching,topics,dispatch,id,loginname,accessToken}=newProps;
         if(!isFetching && !topics.length){
             dispatch(fetchTopics(selectedTab))
         }
         //每次切换tab滚动条回到初始位置
         if(selectedTab!=this.props.selectedTab){
             window.scrollTo(0,0);
+        }
+        //保存登录信息
+        if(id){
+            window.localStorage.setItem('cnodeL',loginname);
+            window.localStorage.setItem('cnodeA',accessToken);
         }
     }
 
@@ -89,9 +105,9 @@ class HomePage extends Component{
             tabData,
             isFetching,
             page,
-            scrollT,
             topics,
-            dispatch
+            avatar_url,
+            loginname
         }=this.props;
         return (
             <div className={this.state.fadeIn?'fade-in':''}>
@@ -107,7 +123,7 @@ class HomePage extends Component{
                         })
                     }
                 </Header>
-                <Login open={this.state.open} toggleFn={this.toggleFn}/>
+                <Login open={this.state.open} toggleFn={this.toggleFn} loginname={loginname} img={avatar_url} exit={this.exit}/>
             </div>
         )
     }
@@ -115,8 +131,15 @@ class HomePage extends Component{
 
 function mapStateToProps(state,ownProps){
     const {
-        homePage
+        homePage,
+        login
     }=state;
+    const {
+        accessToken,
+        id,
+        loginname,
+        avatar_url
+    }=login;
     const {
         selectedTab,
         tabData
@@ -126,15 +149,18 @@ function mapStateToProps(state,ownProps){
         page,
         scrollT,
         topics
-    }=tabData[selectedTab] || {isFetching:false,page:0,scrollT:0,topics:[]};
+    }=tabData[selectedTab] || {isFetching:false,page:0,topics:[]};
 
     return {
         selectedTab,
         tabData,
         isFetching,
         page,
-        scrollT,
-        topics
+        topics,
+        accessToken,
+        id,
+        loginname,
+        avatar_url
     }
 }
 

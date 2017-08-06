@@ -2,7 +2,8 @@ import {
     INPUT_ACCESSTOKEN,
     REQUEST_LOGIN,
     LOGIN_SUCCESS,
-    LOGIN_ERROR
+    LOGIN_ERROR,
+    LOGIN_EXIT
 } from '../actions/index';
 
 
@@ -17,6 +18,8 @@ const login=(state={accessToken:window.localStorage.getItem('cnodeA')|| '',isFet
             return {...state,isFetching:false, avatar_url:action.avatar_url,id:action.id,loginname:action.loginname};
         case LOGIN_ERROR:
             return {...state,isFetching:false,error:action.error};
+        case LOGIN_EXIT:
+            return {...state,accessToken:'',loginname:'',avatar_url:'',id:'',error:''};
         default:
             return state
     }
