@@ -6,12 +6,14 @@ import CircleLoading from '../components/common/CircleLoading';
 import Lists from '../components/HomePage/Lists/Lists'
 import Login from '../components/HomePage/Login/Login';
 
-import {fetchTopics,selectTab,fetchLogin,loginExit} from '../actions/index'
+import {fetchTopics,selectTab,fetchLogin,loginExit,fetchMessageNum} from '../actions/index'
 import getSize from '../utils/getSize';
 
 class HomePage extends Component{
     constructor(props){
         super(props);
+        const {dispatch}=this.props;
+        this.messageInterval=null;
     }
 
     state={
@@ -64,9 +66,9 @@ class HomePage extends Component{
 
     toggleFn=()=>{
         const {dispatch,accessToken,id}=this.props;
-        if(!this.state.open && accessToken && !id){
-            dispatch(fetchLogin(accessToken));
-        }
+        // if(!this.state.open && accessToken && !id){
+        //     dispatch(fetchLogin(accessToken));
+        // }
         this.setState({open:!this.state.open});
     }
 
@@ -80,7 +82,15 @@ class HomePage extends Component{
             if(windowH+scrollT+100>contentH){
                 this.loadMore();
             }
-        }
+        };
+        dispatch(fetchMessageNum());
+        this.messageInterval=setInterval(()=>{
+            dispatch(fetchMessageNum());
+        },30000);
+    }
+
+    componentWillUnmount(){
+       clearInterval(this.messageInterval);
     }
 
     componentWillReceiveProps(newProps){
@@ -107,11 +117,12 @@ class HomePage extends Component{
             page,
             topics,
             avatar_url,
-            loginname
+            loginname,
+            id
         }=this.props;
         return (
             <div className={this.state.fadeIn?'fade-in':''}>
-                <Header filter={selectedTab}  tabs={this.tabs} onClick={this.handleClick} toggleFn={this.toggleFn}>
+                <Header filter={selectedTab}  tabs={this.tabs} onClick={this.handleClick} toggleFn={this.toggleFn} id={id}>
                     {
                         this.tabs.map((tab,index)=>{
                             return (

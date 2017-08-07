@@ -143,3 +143,24 @@ export const fetchCollect=()=>(dispatch,getState)=>{
     .then(response=>response.json())
     .then(json=>dispatch(receiveCollect(json.data)))
 };
+
+//Message
+export const REQUEST_MESSAGENUM='REQUEST_MESSAGENUM';
+export const RECEIVE_MESSAGENUM='RECEIVE_MESSAGENUM';
+
+const requestMessageNum=()=>({
+   type:REQUEST_MESSAGENUM
+});
+
+const receiveMessageNum=(num)=>({
+    type:RECEIVE_MESSAGENUM,
+    num
+});
+
+export const fetchMessageNum=()=>(dispatch,getState)=>{
+    const accessToken=getState().login.accessToken;
+    dispatch(requestMessageNum());
+    fetch(`https://cnodejs.org/api/v1/message/count?accesstoken=${accessToken}`)
+    .then(response=>response.json())
+    .then(json=>dispatch(receiveMessageNum(json.data)));
+};
